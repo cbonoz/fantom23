@@ -120,6 +120,3 @@ Github
 
 <img src="./img/history.png" width=800 />
 
-### Useful links
-* https://medium.com/encode-club/announcing-the-encode-x-fantom-partnership-and-initiatives-544cbddc5a0b
-* https://encodeclub.notion.site/How-to-Submit-cfb0ea19807b4ac8bac719a916f85f58
