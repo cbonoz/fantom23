@@ -1,10 +1,12 @@
+<br/>
 <p align='center'>
-    <img src='./img/logo_3_2.png' width=400/>
+    <img src='./img/logo.png' width=400/>
 </p>
+<br/>
+<br/>
 
 FantomSign
-
-###
+---
 
 FantomSign is a web3 implementation of esignature collection built on Fantom smart contracts and IPFS.
 
