@@ -12,13 +12,11 @@ FantomSign is a web3 implementation of esignature collection built on Fantom sma
 
 Enables Docusign-like capabilities and use-cases using web3 infrastructure.
 
-Submitted to the 
+Submitted to the Fantom Q1 hackathon 2023 on devpost.
 
-Try it out <a href="fantomsign.surge.sh" target="_blank">here</a>! (requires Metamask connected to Fantom testnet).
+Try it out <a href="https://fantomsign.surge.sh" target="_blank">here</a>! (requires Metamask connected to Fantom testnet or mainnet).
 
 Demo video: 
-
-Intro deck: 
 
 ### Benefits
 
@@ -43,7 +41,7 @@ Intro deck:
 To run/demo the project locally, FantomSign requires the following environment variables.
 
 <pre>
-    REACT_APP_COVALENT_KEY={YOUR_COVALENT_API_KEY} # Covalent key for the history page.
+    REACT_APP_COVALENT_KEY={YOUR_COVALENT_API_KEY} # Covalent key for the transaction history page.
     REACT_APP_NFT_PORT_KEY={YOUR_NFT_PORT_API_KEY} # NFT port api key for receipt creation.
     REACT_APP_STORAGE_KEY={YOUR_WEB3_STORAGE_KEY} # web3.storage key for file hosting.
 </pre>

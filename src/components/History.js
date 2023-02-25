@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Button, Input, Select, Table } from "antd";
-import { ACTIVE_CHAIN, APP_NAME, CHAIN_OPTIONS } from "../util/constants";
+import { Button, Input, Table } from "antd";
+import { APP_NAME } from "../util/constants";
 import { getTransactions } from "../util/covalent";
-import { capitalize, col, getDateStringFromTimestamp } from "../util";
-
-const { Option } = Select;
+import { col, getDateStringFromTimestamp } from "../util";
 
 const COLUMNS = [
   //   col("tx_hash"),
@@ -15,27 +13,26 @@ const COLUMNS = [
   col("block_signed_at", row => getDateStringFromTimestamp(row, true)),
 ];
 
-function History(props) {
+function History({ activeChain }) {
   const [address, setAddress] = useState(
     "0x21989d2dbe099d4f278d0c7942231fa289b0b6f5"
   );
-  const [chainId, setChainId] = useState(ACTIVE_CHAIN.id + "");
   const [loading, setLoading] = useState();
   const [data, setData] = useState();
 
   useEffect(() => {
     setData(undefined)
-  }, [chainId])
+  }, [activeChain])
 
   const fetchHistory = async () => {
-    if (!address || !chainId) {
+    if (!address || !activeChain) {
       alert("Address and chainId are required");
       return;
     }
 
     setLoading(true);
     try {
-      const res = await getTransactions(chainId, address);
+      const res = await getTransactions(activeChain.id, address);
       setData(res.data.data.items);
     } catch (e) {
       console.error(e);
@@ -48,8 +45,8 @@ function History(props) {
   return (
     <div>
       <p>
-        This page can be used to lookup {APP_NAME} transactions against a given
-        {ACTIVE_CHAIN.name} address.
+        This page can be used to lookup {APP_NAME} transactions against a given&nbsp;
+        {activeChain.name} address.
       </p>
       <Input
         value={address}
@@ -58,19 +55,7 @@ function History(props) {
       ></Input>
       <br />
       <p></p>
-      <Select
-        defaultValue={chainId}
-        style={{ width: 200 }}
-        onChange={(v) => setChainId(v)}
-      >
-        {Object.keys(CHAIN_OPTIONS).map((cId, i) => {
-          return (
-            <Option key={i} value={cId}>
-              {capitalize(CHAIN_OPTIONS[cId].name)}
-            </Option>
-          );
-        })}
-      </Select>
+
       &nbsp;
       <Button onClick={fetchHistory} disabled={loading} loading={loading}>
         View transactions
@@ -79,7 +64,7 @@ function History(props) {
       <hr />
       {data && (
         <div>
-          <br/>
+          <br />
           <h1>Address History</h1>
           <Table
             dataSource={data}
@@ -90,7 +75,7 @@ function History(props) {
                 onClick: (event) => {
                   console.log("event", event.target.value);
                   window.open(
-                    `${CHAIN_OPTIONS[chainId].url}tx/${record.tx_hash}`,
+                    `${activeChain.url}tx/${record.tx_hash}`,
                     "_blank"
                   );
                 }, // click row

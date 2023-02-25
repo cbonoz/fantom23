@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import SignatureCanvas from "react-signature-canvas";
 import { Button, Modal, Input } from "antd";
 import { getExplorerUrl, ipfsUrl } from "../util";
-import { ACTIVE_CHAIN } from "../util/constants";
+import { CHAIN_OPTIONS } from "../util/constants";
 
 function Packet(props) {
   const [showModal, setShowModal] = useState(false);
@@ -10,6 +10,7 @@ function Packet(props) {
   const sigCanvas = useRef();
 
   const {
+    chainId,
     signId,
     contractAddress,
     authed,
@@ -58,8 +59,8 @@ function Packet(props) {
         <h3>{props.description}</h3>
       </div>
       <div>
-        <a href={getExplorerUrl(contractAddress)} target="_blank">
-          View Contract ({ACTIVE_CHAIN.name})
+        <a href={getExplorerUrl(CHAIN_OPTIONS[chainId], contractAddress)} target="_blank">
+          View Contract ({CHAIN_OPTIONS[chainId]?.name})
         </a>
         <br />
         <a href={ipfsUrl(signId, 'metadata.json')} target="_blank">

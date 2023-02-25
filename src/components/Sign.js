@@ -10,7 +10,7 @@ import {
   markContractCompleted,
 } from "../contract/signatureContract";
 
-function Sign({ account }) {
+function Sign({ account, activeChain }) {
   const { signId } = useParams(); // cid
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(false);
@@ -96,7 +96,7 @@ function Sign({ account }) {
         <h1>Transaction complete!</h1>
         <p>Access your completed fantom contract and signature packet.</p>
 
-        <a href={getExplorerUrl(contractAddress)} target="_blank">
+        <a href={getExplorerUrl(activeChain, contractAddress)} target="_blank">
           View Contract
         </a>
         <p>Full response below:</p>

@@ -2,21 +2,27 @@ import React, { useEffect, useState } from "react";
 
 import { Route, Routes, useNavigate } from "react-router-dom";
 
-import Home from "./components/Home";
 import CreateRequest from "./components/CreateRequest";
-import { Layout, Menu, Breadcrumb, Button } from "antd";
-import { APP_NAME } from "./util/constants";
+import { Layout, Menu, Select, Button } from "antd";
+import { APP_NAME, CHAIN_OPTIONS, DEFAULT_CHAIN } from "./util/constants";
 import History from "./components/History";
+import Home from "./components/Home";
 import Sign from "./components/Sign";
 import logo from "./assets/logo.png";
+import { capitalize } from "./util";
 
 import "./App.css";
+
+const { Option } = Select;
+
+
 
 const { Header, Content, Footer } = Layout;
 
 function App() {
   const [account, setAccount] = useState();
   const [loading, setLoading] = useState(false);
+  const [activeChain, setActiveChain] = useState(DEFAULT_CHAIN);
 
   const login = async () => {
     setLoading(true)
@@ -48,11 +54,9 @@ function App() {
     }
   }
 
-  const logout =
-
-    useEffect(() => {
-      checkConnected()
-    }, [])
+  useEffect(() => {
+    checkConnected()
+  }, [])
 
   const navigate = useNavigate();
   const path = window.location.pathname;
@@ -80,6 +84,25 @@ function App() {
     },
     {
       key: 0,
+      label: <>
+      Network:&nbsp;
+      <Select
+        defaultValue={activeChain.id}
+        style={{ width: 200 }}
+        onChange={(v) => setActiveChain(CHAIN_OPTIONS[v])}
+      >
+        {Object.values(CHAIN_OPTIONS).map((chain, i) => {
+          return (
+            <Option key={i} value={chain.id}>
+              {capitalize(chain.name)}
+            </Option>
+          );
+        })}
+      </Select>
+</>
+    },
+    {
+      key: 1,
       label:
         <span>
           {!account && <span>
@@ -87,25 +110,29 @@ function App() {
           </span>}
           {account && <span>
             Hello: {account}</span>}
-            
+
         </span>
-    }
+    },
   ];
 
-
+  useEffect(() => {
+    if (window.ethereum) {
+      window.ethereum.on('accountsChanged', async (accounts) => {
+        console.log('accountsChanged', accounts)
+        setAccount(accounts[0])
+      })
+    }
+  })
 
   return (
     <div className="App">
       <Layout className="layout">
         <Header>
-          {/* <div className="logo" /> */}
           <Menu
             // theme="dark"
             mode="horizontal"
             selectedKeys={[path]}
-            items={menuItems
-
-            }
+            items={isSignature ? [menuItems[0]] : menuItems}
           >
 
           </Menu>
@@ -114,9 +141,9 @@ function App() {
           <div className="container">
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/sign/:signId" element={<Sign account={account} />} />
-              <Route path="/create" element={<CreateRequest account={account} />} />
-              <Route path="/history" element={<History />} />
+              <Route path="/sign/:signId" element={<Sign activeChain={activeChain} account={account} />} />
+              <Route path="/create" element={<CreateRequest activeChain={activeChain} account={account} />} />
+              <Route path="/history" element={<History activeChain={activeChain} />} />
             </Routes>
           </div>
         </Content>

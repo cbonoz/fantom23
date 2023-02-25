@@ -1,4 +1,4 @@
-import { ACTIVE_CHAIN, IPFS_BASE_URL } from "./constants";
+import { DEFAULT_CHAIN, IPFS_BASE_URL } from "./constants";
 
 export const ipfsUrl = (cid, fileName) => {
   // let url = `https://ipfs.io/ipfs/${cid}`;
@@ -15,12 +15,16 @@ export function capitalize(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+export const toHexString = (number) => {
+  return "0x" + Number(number).toString(16);
+}
+
 export const humanize = (str) => {
   return capitalize(str.replace(/_/g, " "));
 };
 
-export const getExplorerUrl = (hash, useTx) =>
-  `${ACTIVE_CHAIN.url}${useTx ? "tx/" : "address/"}${hash}`;
+export const getExplorerUrl = (activeChain, hash, useTx) =>
+  `${activeChain?.url || DEFAULT_CHAIN.url}${useTx ? "tx/" : "address/"}${hash}`;
 
 export const createJsonFile = (signload, fileName) => {
   const st = JSON.stringify(signload);

@@ -29,8 +29,8 @@ export const CHAIN_IDS = Object.keys(CHAIN_OPTIONS)
   // 42: { name: "kovan", url: "https://kovan.etherscan.io/tx/", id: 42 },
 // 4: { name: "rinkeby", url: "https://rinkeby.etherscan.io/tx/", id: 4 },
 
-export const ACTIVE_CHAIN_ID = 0xfa2
-export const ACTIVE_CHAIN = CHAIN_OPTIONS[ACTIVE_CHAIN_ID]
+export const DEFAULT_CHAIN_ID = 4002
+export const DEFAULT_CHAIN = CHAIN_OPTIONS[DEFAULT_CHAIN_ID]
 
 export const EXAMPLE_FORM = {
   title: "Renter agreement",
@@ -56,4 +56,4 @@ export const CREATE_STEPS = [
   }
 ]
 
-console.log("config", COVALENT_KEY, NFT_PORT_KEY, ACTIVE_CHAIN);
+console.log("config", COVALENT_KEY, NFT_PORT_KEY, DEFAULT_CHAIN);

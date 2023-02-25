@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Input, Row, Col, Radio, Steps } from "antd";
 import TextArea from "antd/lib/input/TextArea";
-import { signatureUrl, ipfsUrl, getExplorerUrl } from "../util";
+import { signatureUrl, ipfsUrl, getExplorerUrl, toHexString } from "../util";
 import { CREATE_STEPS, EXAMPLE_FORM } from "../util/constants";
 import { FileDrop } from "./FileDrop/FileDrop";
 import { storeFiles } from "../util/stor";
@@ -9,7 +9,7 @@ import { deployContract, validAddress } from "../contract/signatureContract";
 
 const { Step } = Steps;
 
-function CreateRequest(props) {
+function CreateRequest({ activeChain }) {
   const [data, setData] = useState({ ...EXAMPLE_FORM });
   const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
@@ -32,6 +32,21 @@ function CreateRequest(props) {
   const create = async () => {
     setError(undefined);
 
+    const currentNetwork = await window.ethereum.request({
+      method: "eth_chainId",
+    });
+
+    const targetChainId = toHexString(activeChain.id)
+
+    // Make sure current network is correct based on current metamask network.
+    if (targetChainId !== currentNetwork) {
+      setError(
+        `Please switch to the ${activeChain.name} (${targetChainId}) network in metamask to create this esignature request.`
+      );
+      return;
+    }
+
+
     if (!isValidData) {
       setError(
         "Please provide a title, description, valid address, and at least one file."
@@ -40,14 +55,12 @@ function CreateRequest(props) {
     }
 
     setLoading(true);
-    const body = { ...data };
 
     // Format files for upload.
-    const files = body.files.map((x) => {
-      return x;
-    });
+    const files = data.files;
 
     let res = { ...data };
+    res["chainId"] = activeChain.id;
 
     try {
       // 1) deploy base contract with metadata,
@@ -66,7 +79,7 @@ function CreateRequest(props) {
 
       // 3) return shareable url.
       res["signatureUrl"] = signatureUrl(cid);
-      res["contractUrl"] = getExplorerUrl(res.address);
+      res["contractUrl"] = getExplorerUrl(activeChain, res.address);
 
       // Result rendered after successful doc upload + contract creation.
       setResult(res);
