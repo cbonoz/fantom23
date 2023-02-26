@@ -23,6 +23,11 @@ export const toHexString = (number) => {
   return "0x" + Number(number).toString(16);
 }
 
+// abbreviate string with asterisks
+export const abbreviate = (str, chars) => {
+  return str.substring(0, chars || 6) + "**";
+};
+
 export const humanize = (str) => {
   return capitalize(str.replace(/_/g, " "));
 };

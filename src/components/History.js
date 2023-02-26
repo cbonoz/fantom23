@@ -2,12 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Button, Input, Table } from "antd";
 import { APP_NAME } from "../util/constants";
 import { getTransactions } from "../util/covalent";
-import { col, getDateStringFromTimestamp } from "../util";
+import { abbreviate, col, getDateStringFromTimestamp } from "../util";
 
 const COLUMNS = [
-  //   col("tx_hash"),
-  //   col("from_address"),
-  col("to_address"),
+  col("tx_hash", row => abbreviate(row || '', 6)),
+  col("from_address"),
   col("value"),
   col("gas_spent"),
   col("block_signed_at", row => getDateStringFromTimestamp(row, true)),

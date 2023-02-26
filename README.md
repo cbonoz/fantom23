@@ -86,7 +86,7 @@ Github
 
 #### Home page
 
-<img src="./img/fantomsign.png" width=800 />
+<img src="./img/home.png" width=800 />
 
 #### Creating a request
 
@@ -96,21 +96,31 @@ Github
 
 <img src="./img/ipfs_docs.png" width=800 />
 
+### Fantomsign enforces the signer is logged in with the intended address
+
+<img src="./img/access.png" width=800 />
+
 ### Esigning
 
 <img src="./img/esign.png" width=800 />
 
-### Both the creation of the request and the signature get saved as events on a smart contract
+### Signature saved as an NFT with a transaction recorded to Fantom
 
-<img src="./img/transactions.png" width=800 />
+<img src="./img/signing.png" width=800 />
+
 
 ### Completion esignature NFT
 
 <img src="./img/nft.png" width=800 />
 
-### Deployed Contract
 
-<img src="./img/contract.png" width=800 />
+### Both the creation of the request and the signature get saved as events on a smart contract
+
+<img src="./img/transactions.png" width=800 />
+
+<!-- ### Deployed Contract
+
+<img src="./img/contract.png" width=800 /> -->
 
 ### Contract source
 

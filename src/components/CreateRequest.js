@@ -10,7 +10,7 @@ import { deployContract, validAddress } from "../contract/signatureContract";
 const { Step } = Steps;
 
 function CreateRequest({ activeChain }) {
-  const [data, setData] = useState({ ...EXAMPLE_FORM });
+  const [data, setData] = useState({ files: [] });
   const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState();
@@ -23,7 +23,7 @@ function CreateRequest({ activeChain }) {
     return (
       data.title &&
       data.description &&
-      data.files.length > 0 &&
+      data.files?.length > 0 &&
       validAddress(data.signerAddress)
     );
   };
@@ -105,6 +105,11 @@ function CreateRequest({ activeChain }) {
     return 0;
   };
 
+  const setDemoData = (e) => {
+    e.preventDefault();
+    setData({ ...EXAMPLE_FORM });
+  };
+
 
   return (
     <div>
@@ -112,6 +117,7 @@ function CreateRequest({ activeChain }) {
         <Col span={16}>
           <div className="create-form white boxed">
             <h2>Create new esignature request</h2>
+            <a href="#" onClick={setDemoData}>Set demo data</a>
             <br />
 
             <h3 className="vertical-margin">Esignature request title:</h3>
