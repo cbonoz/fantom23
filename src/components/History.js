@@ -87,7 +87,6 @@ function History({ activeChain }) {
               };
             }}
           />
-          ;
         </div>
       )}
     </div>

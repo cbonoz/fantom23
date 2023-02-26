@@ -29,7 +29,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build && cp build/index.html build/200.html",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "yarn build && surge build/ fantomsign.surge.sh"
   },
   "eslintConfig": {
     "extends": [
