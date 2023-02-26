@@ -19,6 +19,11 @@
   border-radius: 5px;
 }
 
+.preview-image {
+  width: 32px;
+  object-fit: cover;
+}
+
 .container {
   max-width: 1000px;
   margin: 0 auto;

@@ -60,7 +60,7 @@ function Packet(props) {
       </div>
       <div>
         <a href={getExplorerUrl(CHAIN_OPTIONS[chainId], contractAddress)} target="_blank">
-          View Contract ({CHAIN_OPTIONS[chainId]?.name})
+          View Contract ({CHAIN_OPTIONS[chainId]?.name || ''})
         </a>
         <br />
         <a href={ipfsUrl(signId, 'metadata.json')} target="_blank">

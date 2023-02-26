@@ -8,7 +8,9 @@
 FantomSign
 ---
 
-FantomSign is a web3 implementation of esignature collection built on Fantom smart contracts and IPFS.
+FantomSign is a web3 implementation of esignature collection built on Fantom smart contracts and IPFS. 
+
+<!-- FantomSign is a distributed esignature application backed by Fantom Smart Contracts -->
 
 Enables Docusign-like capabilities and use-cases using web3 infrastructure.
 

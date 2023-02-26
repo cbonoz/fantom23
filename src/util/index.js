@@ -9,6 +9,10 @@ export const ipfsUrl = (cid, fileName) => {
   return url;
 };
 
+export const isEmpty = (obj) => {
+  return !obj || obj.length === 0;
+};
+
 export const signatureUrl = (cid) => `${window.location.origin}/sign/${cid}`;
 
 export function capitalize(string) {
