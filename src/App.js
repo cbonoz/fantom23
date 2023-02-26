@@ -132,7 +132,7 @@ function App() {
             // theme="dark"
             mode="horizontal"
             selectedKeys={[path]}
-            items={isSignature ? [menuItems[0]] : menuItems}
+            items={isSignature ? [menuItems[0], menuItems[menuItems.length - 1]] : menuItems}
           >
 
           </Menu>

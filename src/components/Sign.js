@@ -4,7 +4,7 @@ import Packet from "./Packet";
 import { useParams } from "react-router-dom";
 import { createSignatureNFT, getMintedNFT } from "../util/nftport";
 import { fetchMetadata, retrieveFiles } from "../util/stor";
-import { getExplorerUrl } from "../util";
+import { getExplorerUrl, ipfsUrl } from "../util";
 import {
   getPrimaryAccount,
   markContractCompleted,
@@ -13,6 +13,7 @@ import {
 function Sign({ account, activeChain }) {
   const { signId } = useParams(); // cid
   const [data, setData] = useState({});
+  const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState();
 
@@ -23,6 +24,7 @@ function Sign({ account, activeChain }) {
     }
 
     setLoading(true);
+    setError(undefined)
 
     try {
       const res = await fetchMetadata(signId);
@@ -30,6 +32,7 @@ function Sign({ account, activeChain }) {
       console.log("esignature request", res.data);
     } catch (e) {
       console.error(e);
+      setError(e.response.data)
       alert("error getting signdata" + e);
     } finally {
       setLoading(false);
@@ -59,17 +62,12 @@ function Sign({ account, activeChain }) {
         signerAddress,
         signatureData
       );
+      const nftUrl = ipfsUrl(res.data.ipfs_url.split("/").pop());
+      res.data = { ...res.data, ipfs_url: nftUrl };
       nftResults["signatureNft"] = res.data;
       const url = nftResults["transaction_external_url"];
       res = await markContractCompleted(contractAddress, url || signId);
       nftResults = { nftResults, ...res };
-      try {
-        res = await getMintedNFT(res["hash"]);
-        nftResults = { nftResults, ...res };
-      } catch (e) {
-        // soft error for token id fetch.
-        console.error(e);
-      }
       setResult(nftResults);
     } catch (e) {
       console.error("error signing", e);
@@ -83,6 +81,15 @@ function Sign({ account, activeChain }) {
     return (
       <div className="container">
         <Spin size="large" />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="container">
+        <h1>Error looking up request, the url entered may not be valid.</h1>
+        <p className="error-text">{error}</p>
       </div>
     );
   }
