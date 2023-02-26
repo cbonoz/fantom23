@@ -94,7 +94,7 @@ export function FileDrop({ files, setFiles }) {
         <p>Drag 'n' drop some files here, or click to select files</p>
       </div>
       <br/>
-      {!noFiles && <h3>Items</h3>}
+      {!noFiles && <h3>Items ({files.length})</h3>}
       {noFiles && <div>
         <Empty
           image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"

@@ -59,7 +59,8 @@ function History({ activeChain }) {
       &nbsp;
       <Button onClick={fetchHistory} disabled={loading} loading={loading}>
         View transactions
-      </Button>
+      </Button>&nbsp;
+      {address && data && <a href={`${activeChain.url}address/${address}`} target="_blank" rel="noreferrer">View on {activeChain.name}</a>}
       <br />
       <hr />
       {data && (

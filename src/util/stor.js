@@ -1,6 +1,7 @@
 // import { Web3Storage } from "web3.storage";
 import axios from "axios";
 import { Web3Storage } from "web3.storage/dist/bundle.esm.min.js"; // webpack 4
+import { IPFS_BASE_URL } from "./constants";
 
 const API_KEY = process.env.REACT_APP_STORAGE_KEY;
 if (!API_KEY) {
@@ -16,7 +17,7 @@ function makeStorageClient() {
 }
 
 export const ipfsUrl = (cid, fileName) => {
-    let url = `https://ipfs.io/ipfs/${cid}`;
+    let url = `${IPFS_BASE_URL}/${cid}`;
     if (fileName) {
       return `${url}/${fileName}`;
     }

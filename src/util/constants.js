@@ -39,7 +39,7 @@ export const EXAMPLE_FORM = {
   files: [],
 };
 
-export const IPFS_BASE_URL = "https://ipfs.io/ipfs"
+export const IPFS_BASE_URL = "https://w3s.link/ipfs"
 
 export const CREATE_STEPS = [
   {

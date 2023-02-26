@@ -79,7 +79,7 @@ function App() {
     },
     {
       key: '/history',
-      label: "Lookup history",
+      label: "Lookup request",
       onClick: () => navigate("/history"),
     },
     {
