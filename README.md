@@ -130,3 +130,15 @@ Github
 
 <img src="./img/history.png" width=800 />
 
+#### Future work ideas
+
+* Integration with additional blockchain networks to expand the availability of the platform and its features.
+* Adding support for multi-party signature requests to facilitate document collaboration.
+* Enhancing the user interface to make it more intuitive and user-friendly, with features such as document templates, drag-and-drop functionality, and customizable branding.
+* Developing an API to allow businesses to integrate FantomSign with their existing workflows and systems.
+* Building advanced security features, such as two-factor authentication, encryption, and access controls, to enhance the platform's security.
+* Integrating with third-party identity verification services to further strengthen the platform's authentication process.
+* Native app support to allow users to connect to Fantom and complete signatures from an app
+* Expanding the platform's capabilities to include additional document types, such as contracts and legal agreements.
+* Building analytics and reporting features to provide users with insights into their esignature requests and usage.
+* Developing a feature that allows users to send reminders and follow-ups to signers who have not yet completed their signature requests. These reminders could be facilitated on web3 push networks.
