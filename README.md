@@ -44,9 +44,9 @@ Demo video: https://youtu.be/v6PPFMlGXYA
 To run/demo the project locally, FantomSign requires the following environment variables.
 
 <pre>
-    REACT_APP_COVALENT_KEY={YOUR_COVALENT_API_KEY} # Covalent key for the transaction history page.
-    REACT_APP_NFT_PORT_KEY={YOUR_NFT_PORT_API_KEY} # NFT port api key for receipt creation.
-    REACT_APP_STORAGE_KEY={YOUR_WEB3_STORAGE_KEY} # web3.storage key for file hosting.
+    REACT_APP_COVALENT_KEY={YOUR_COVALENT_API_KEY} # Covalent key for the transaction history page. See https://www.covalenthq.com/docs/networks/fantom/
+    REACT_APP_NFT_PORT_KEY={YOUR_NFT_PORT_API_KEY} # NFT port api key for receipt creation (nftport.com)
+    REACT_APP_STORAGE_KEY={YOUR_WEB3_STORAGE_KEY} # web3.storage key for web3-based file hosting.
 </pre>
 
 ---
@@ -57,8 +57,14 @@ After declaring the above environment variables, use the below command to start 
 Recompiling FantomSign contract:
 `cd contracts; npx hardhat compile`
 
-Example esignature requests contracts:
-http://localhost:3000/sign/QmUAS9XJyf9gPgadoVeExESiVnVJmVJW6qtcU4dzJzwG96
+Example esignature requests contract:
+https://testnet.ftmscan.com/address/0xDDC2Fd0930150dA06f9FEC09c77aAd1675fB49a0
+
+First transaction shown is the deployment, second is the signing.
+
+Example request url: https://fantomsign.surge.sh/sign/bafybeibm22omnto4xi7by6vvkrkzni3tw6c5rkwk3nrpkbhl5q62qkkiia.
+
+Example hosted document artifacts: https://bafybeibm22omnto4xi7by6vvkrkzni3tw6c5rkwk3nrpkbhl5q62qkkiia.ipfs.w3s.link/
 
 ### Useful links
 * Testnet faucet: https://faucet.fantom.network/
@@ -123,7 +129,7 @@ Github
 
 <img src="./img/contract.png" width=800 /> -->
 
-### Contract source
+### Contract source snapshot
 
 <img src="./img/sol.png" width=800 />
 
