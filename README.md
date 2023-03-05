@@ -16,7 +16,7 @@ Enables Docusign-like capabilities and takes advantage of the low costs, speed, 
 
 Submitted to the Fantom Q1 hackathon 2023 on devpost.
 
-Try it out <a href="https://fantomsign.surge.sh" target="_blank">here</a>! (requires Metamask connected to Fantom testnet or mainnet).
+Try it out <a href="https://fantomsign.surge.sh" target="_blank">here</a>! (note: requires Metamask connected to Fantom testnet or Fantom Opera).
 
 Demo video: https://youtu.be/v6PPFMlGXYA
 
@@ -34,6 +34,7 @@ Demo video: https://youtu.be/v6PPFMlGXYA
 
 - Covalent: Enables in-app history queries of past esignature requests and fulfillment for a given fantom address.
 - NFTPort: Generation of the esignature record / proof. Attaches the final esignature/agreement to an NFT and saves a link to it in the smart contract.
+- Metamask: Wallet connection. Follow guides to connect your metamask account here: https://docs.fantom.foundation/wallet/set-up-metamask
 - Fantom: In-app deployment of the request smart contract and marked completed upon completion of the each request based on receival of signer's signature. A new Fantom contract is deployed for each new esignature request.
 
 <!-- <b>This project is a hackathon prototype and would require additional work / deployment to be production ready. -->
